@@ -1,0 +1,4 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_rs_library_book,rs_library.book,model_book,rs_library.group_administrator_book_loans,1,1,1,1
+access_rs_library_book_loan,rs_library.loan,model_book_loan,rs_library.group_administrator_book_loans,1,1,1,1
+access_rs_library_book_loan_line,rs_library.loan.line,model_book_loan_line,rs_library.group_administrator_book_loans,1,1,1,1

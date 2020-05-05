@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+<!-- Ceamos nuevos grupos para los registros de los usuaios-->
+    <record id="group_administrator_book_loans" model="res.groups" >
+           <field name="name" >Administrator Book Loans </field>
+    </record>
+
+    <record id="group_user_book" model="res.groups" >
+           <field name="name" >User Book Loans</field>
+    </record>
+
+
+</odoo>
