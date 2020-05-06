@@ -26,6 +26,7 @@
         'security/rs_library_security.xml',
         'security/ir.model.access.csv',
         'views/book_views.xml',
+        'views/res_partner_view.xml',
         'views/templates.xml',
     ],
     # only loaded in demonstration mode

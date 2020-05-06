@@ -1,0 +1,38 @@
+<odoo>
+  <data>
+<!--
+position:
+after
+before
+inside
+replace
+-->
+    <record model="ir.ui.view" id="rs_library.res_partner_form">
+      <field name="name">Students</field>
+      <field name="model">res.partner</field>
+      <field name="inherit_id" ref="base.view_partner_form" />
+      <field name="arch" type="xml">
+        <field name="parent_id" position="after" >
+          <label for="student_value" />
+          <field name="student_value" />
+        </field>
+        <xpath expr="//field[@name='ref']" position="replace" >
+        </xpath>
+        <field name="vat" position="after">
+            <field name="ref" string="Matricula" />
+        </field>
+      </field>
+      </record>
+
+      <record model="ir.ui.view" id="rs_library.res_partner_filter">
+        <field name="name">Students</field>
+        <field name="model">res.partner</field>
+        <field name="inherit_id" ref="base.view_res_partner_filter" />
+        <field name="arch" type="xml">
+          <filter name="type_company" position="after" >
+            <filter string="Student" domain="[('student_value','=',True)]" name="student_value"/>
+          </filter>
+        </field>
+        </record>
+</data>
+</odoo>
