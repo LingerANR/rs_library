@@ -14,39 +14,6 @@
     </record>
 
 
-    <record model="ir.ui.view" id="rs_library.loan_list">
-      <field name="name">Loans</field>
-      <field name="model">book.loan</field>
-      <field name="arch" type="xml">
-        <form>
-           <header>
-              <field name="student_id"/>
-           </header>
-        <field name="loan_line"/>
-        <field name="state"/>
-        <group name="group_rigth">
-          <field name="date_record"/>
-          <field name="renews"/>
-          <field name="date_start"/>
-          <field name="date_end"/>
-          <field name="days"/>
-
-        </group>
-
-       </form>
-      </field>
-      </record>
-        <!-- <tree>
-         <field name="date_record"/>
-         <field name="student_id"/>
-         <field name="date_start"/>
-         <field name="date_end"/>
-         <field name="renews"/>
-         <field name="state"/>
-        </tree>
-      </field>
-    </record> -->
-
     <!-- actions opening views on models -->
 
     <record model="ir.actions.act_window" id="rs_library.book_action_window">
@@ -55,86 +22,6 @@
       <field name="view_mode">tree,form</field>
     </record>
 
-    <record model="ir.actions.act_window" id="rs_library.students_action_window">
-      <field name="name">Student</field>
-      <field name="res_model">res.partner</field>
-      <field name="view_mode">tree,form</field>
-    </record>
-    <!-- <field name="arch" type="xml"> -->
-
-
-    <record model="ir.actions.act_window" id="rs_library.loans_action_window">
-      <field name="name">Loans</field>
-      <field name="res_model">book.loan</field>
-      <field name="view_mode">tree,form</field>
-
-    </record>
-
-    <!-- <form>
-       <header>
-          <field name="student_id"/>
-       </header>
-    <field name="loan_line"/>
-    <field name="state"/>
-    <group name="group_rigth">
-      <field name="date_record"/>
-      <field name="renews"/>
-      <field name="date_start"/>
-      <field name="date_end"/>
-      <field name="days"/>
-
-    </group>
-
-   </form>
-  </field> -->
-
-
-
-    <!-- <record id="view_form_res_partner_inherit" model="ir.ui.view">
-          <field name="name">Custom Res partner</field>
-          <field name="res_model">student</field>
-          <field name="inherit_id" ref="base.view_partner_simple_form" />
-          <field name="arch" type="xml">
-              <xpath expr="//field[@name='parent_id']" position="after" >
-                <field name="student_value" />
-              </xpath>
-          </field>
-     </record> -->
-
-    <!-- server action to the one above -->
-    <!--
-    <record model="ir.actions.server" id="rs_library.action_server">
-      <field name="name">rs_library server</field>
-      <field name="model_id" ref="model_rs_library_rs_library"/>
-      <field name="state">code</field>
-      <field name="code">
-        action = {
-          "type": "ir.actions.act_window",
-          "view_mode": "tree,form",
-          "res_model": self._name,
-        }
-      </field>
-    </record>
-    -->
-
-    <!-- Top menu item -->
-    <menuitem name="Loan Books" id="rs_library.menu_root"/>
-
-    <!-- menu categories -->
-
-    <menuitem name="Configure" id="rs_library.menu_config" parent="rs_library.menu_root" sequence="20" />
-    <menuitem name="Loans" id="rs_library.menu_loans" parent="rs_library.menu_root"  sequence="10" />
-
-    <!-- actions -->
-
-    <menuitem name="Books" id="rs_library.menu_1_book" parent="rs_library.menu_config"
-              action="rs_library.book_action_window"/>
-
-    <menuitem name="Students" id="rs_library.menu2_students" parent="rs_library.menu_config"
-              action="rs_library.students_action_window"/>
-
-    <menuitem name="Loans" id="rs_library.menu1_loans" parent="rs_library.menu_loans"
-              action="rs_library.loans_action_window"/>
 
   </data>
 </odoo>

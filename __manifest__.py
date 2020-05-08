@@ -19,15 +19,18 @@
     'version': '12.1',
 
     # any module necessary for this one to work correctly
-    'depends': ['base'],
+    'depends': ['base', 'portal'],
 
     # always loaded
     'data': [
         'security/rs_library_security.xml',
         'security/ir.model.access.csv',
+        'views/book_loan_views.xml',
         'views/book_views.xml',
         'views/res_partner_view.xml',
+        'views/rs_library_views.xml',
         'views/templates.xml',
+        'data/ir_sequence_data.xml'
     ],
     # only loaded in demonstration mode
     'demo': [

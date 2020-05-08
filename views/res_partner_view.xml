@@ -19,7 +19,7 @@ replace
         <xpath expr="//field[@name='ref']" position="replace" >
         </xpath>
         <field name="vat" position="after">
-            <field name="ref" string="Matricula" />
+            <field name="ref" string="Matricula" domain="[('student_value','=',True)]"/>
         </field>
       </field>
       </record>
@@ -34,5 +34,14 @@ replace
           </filter>
         </field>
         </record>
+
+
+
+        <record model="ir.actions.act_window" id="rs_library.students_action_window">
+          <field name="name">Student</field>
+          <field name="res_model">res.partner</field>
+          <field name="view_mode">tree,form</field>
+        </record>
+
 </data>
 </odoo>
