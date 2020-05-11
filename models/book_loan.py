@@ -59,3 +59,4 @@ class BookLoanLines(models.Model):
         ('done', 'Recovered'),
         ('cancel', 'Cancelled'),
         ], string='Status', readonly=True, copy=False, index=True, track_visibility='onchange', track_sequence=3, default='draft')
+    student_id=fields.Char(string="Student", related='book_loan_id.student_id.name',readonly=True,help="Student Name")

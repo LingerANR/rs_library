@@ -1,11 +1,31 @@
 <odoo>
   <data>
     <!-- explicit list view definition -->
+    <record model="ir.ui.view" id="rs_library.book_form">
+      <field name="name">Books</field>
+      <field name="model">book</field>
+      <field name="arch" type="xml">
+        <form>
+          <sheet>
+            <group name="image_book">
+              <field name="photo" widget='image' class="oe_avatar"/>
+            </group>
+            <group name="group_1">
+              <field name="title"/>
+              <field name="isbn"/>
+              <field name="author"/>
+            </group>
+          </sheet>
+        </form>
+      </field>
+    </record>
+
     <record model="ir.ui.view" id="rs_library.book_list">
       <field name="name">Books</field>
       <field name="model">book</field>
       <field name="arch" type="xml">
         <tree>
+          <field name="photo" widget="image" height="100" width="100" />
           <field name="title"/>
           <field name="isbn"/>
           <field name="author"/>
@@ -13,13 +33,37 @@
       </field>
     </record>
 
+    <record model="ir.ui.view" id="book_kanban_view">
+        <field name="name">book.kanban</field>
+        <field name="model">book</field>
+        <field name="arch" type="xml">
+            <kanban >
+                <field name="title"/>
+                <field name="isbn"/>
+                <field name="photo"/>
+                <templates>
+                    <t t-name="kanban-box">
+                      <div class="oe_kanban_details">
+                        <h4><field name="title"/></h4>
+                        <ul>
+                          <li><field name="isbn"/></li>
+                          <li> <field name="author"/> </li>
+                        </ul>
+                      </div>
+
+                    </t>
+                </templates>
+            </kanban>
+          </field>
+        </record>
+
 
     <!-- actions opening views on models -->
 
     <record model="ir.actions.act_window" id="rs_library.book_action_window">
       <field name="name">books</field>
       <field name="res_model">book</field>
-      <field name="view_mode">tree,form</field>
+      <field name="view_mode">kanban,tree,form</field>
     </record>
 
 

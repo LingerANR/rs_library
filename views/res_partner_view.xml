@@ -20,6 +20,7 @@ replace
         </xpath>
         <field name="vat" position="after">
             <field name="ref" string="Matricula" domain="[('student_value','=',True)]"/>
+            <field name="rs_group_id" string="GroupMatricula"/>
         </field>
       </field>
       </record>

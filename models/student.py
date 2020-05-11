@@ -2,11 +2,19 @@
 
 from odoo import models, fields, api
 
+class RSGroups(models.Model):
+    _name="rs.group"
+    _description="School Groups"
+
+    name = fields.Char("Group")
+
+
 class Student(models.Model):
     _inherit = 'res.partner'
 
-    student_value = fields.Boolean(string="Student?")
+    student_value = fields.Boolean(string="Is Student")
     # mat = fields.Char(string='Matricula de estudiante', index=True)
+    rs_group_id = fields.Many2one('rs.group', string="Group")
 
     @api.model
     def create(self, vals):

@@ -20,7 +20,7 @@
                       </h1>
                   </div>
                 <group name="group_top">
-                  <field name="student_id"/>
+                  <field name="student_id" attrs="{'readonly':[('state','!=','draft')]}"/>
                 </group>
                 <group name="group_rigth" cols="4" >
                     <field name="date_record" attrs="{'readonly':[('state','!=','draft')]}"/>
@@ -73,12 +73,69 @@
 
 
 
+
+
+      <!-- <record model="ir.ui.view" id="rs_library.book_loan_line_form">
+        <field name="name">Loan Line</field>
+        <field name="model">book.loan.line</field>
+        <field name="arch" type="xml">
+          <form string="Loan Lines">
+            <group name="Left">
+              <field name="book_loan_id"/>
+              <field name="book_id"/>
+              <field name="state"/>
+            </group>
+            <group name="Rigth">
+              <field name="date_start"/>
+              <field name="date_end"/>
+            </group>
+          </form>
+        </field>
+      </record> -->
+
+      <record model="ir.ui.view" id="rs_library.loan_calendar">
+        <field name="name">Loans</field>
+        <field name="model">book.loan</field>
+        <field name="arch" type="xml">
+          <calendar date_start="date_start" date_stop="date_end" color="state"  >
+            <field name="loan_count" />
+            <field name="student_id" />
+            <field name="date_end" />
+            <field name="renews" />
+          </calendar>
+        </field>
+      </record>
+
+
+      <record model="ir.ui.view" id="rs_library.book_loan_line">
+        <field name="name">Loan Line</field>
+        <field name="model">book.loan.line</field>
+        <field name="arch" type="xml">
+          <tree string="Book Loan Lines" >
+            <field name="book_loan_id"/>
+            <field name="student_id"/>
+            <field name="book_id"/>
+            <field name="state"/>
+            <field name="date_start"/>
+            <field name="date_end"/>
+          </tree>
+        </field>
+        </record>
+
+
     <!-- <field name="arch" type="xml"> -->
 
 
     <record model="ir.actions.act_window" id="rs_library.loans_action_window">
       <field name="name">Loans</field>
       <field name="res_model">book.loan</field>
+      <field name="view_mode">tree,form,calendar</field>
+
+    </record>
+
+    <record model="ir.actions.act_window" id="rs_library.loan_line_action_window">
+      <field name="name">Loan lines</field>
+      <field name="res_model">book.loan.line</field>
       <field name="view_mode">tree,form</field>
 
     </record>

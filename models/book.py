@@ -8,6 +8,7 @@ class Book(models.Model):
 
     _rec_name="title"
 
+    photo = fields.Binary("Image", attachment=True)
     title = fields.Char(string = "Title")
     isbn = fields.Char(string = "ISBN")
     author = fields.Char(string = "Author")

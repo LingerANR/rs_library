@@ -20,5 +20,8 @@
     <menuitem name="Loans" id="rs_library.menu1_loans" parent="rs_library.menu_loans"
               action="rs_library.loans_action_window"/>
 
+    <menuitem name="Loan Lines" id="rs_library.menu2_loans" parent="rs_library.menu_loans"
+              action="rs_library.loan_line_action_window"/>
+
   </data>
 </odoo>
