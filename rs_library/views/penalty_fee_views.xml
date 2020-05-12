@@ -3,6 +3,18 @@
 
     <!-- actions opening views on models -->
 
+    <record model="ir.ui.view" id="rs_library.penalty_tree">
+      <field name="name">Penalties</field>
+      <field name="model">penalty.fee</field>
+      <field name="arch" type="xml">
+        <tree string="Book Penalty" >
+          <field name="loan_line_id"/>
+          <field name="create_date"/>
+          <field name="paid"/>
+        </tree>
+      </field>
+      </record>
+
     <record model="ir.actions.act_window" id="rs_library.penalty_fee_action_window">
       <field name="name">Penalty Book Loan Fees</field>
       <field name="res_model">penalty.fee</field>
