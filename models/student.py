@@ -19,14 +19,11 @@ class Student(models.Model):
     @api.model
     def create(self, vals):
         rec = super(Student,self).create(vals)
-        import pdb; pdb.set_trace()
+        #import pdb; pdb.set_trace()
         if rec.student_value == True:
             rec.write({'ref' : self.get_matricula() })
-            return rec
+        return rec
 
-        else:
-            print("Esta inactivo...")
-            return rec
 
     # @api.model
     # def write(self, vals):
@@ -51,8 +48,8 @@ class Student(models.Model):
 
     @api.model
     def write(self, vals):
-        import pdb; pdb.set_trace()
-        if vals.get('student_value',True):
+        #import pdb; pdb.set_trace()
+        if vals.get('student_value',False):
             if vals['student_value']== True:
                 if not self.ref:
                     vals['ref']=self.get_matricula()

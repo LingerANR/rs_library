@@ -28,9 +28,11 @@
         'views/book_loan_views.xml',
         'views/book_views.xml',
         'views/res_partner_view.xml',
+        'views/penalty_fee_views.xml',
         'views/rs_library_views.xml',
         'views/templates.xml',
-        'data/ir_sequence_data.xml'
+        'data/ir_sequence_data.xml',
+        'data/ir_cron_data.xml'
     ],
     # only loaded in demonstration mode
     'demo': [

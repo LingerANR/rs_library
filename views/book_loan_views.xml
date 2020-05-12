@@ -97,7 +97,7 @@
         <field name="name">Loans</field>
         <field name="model">book.loan</field>
         <field name="arch" type="xml">
-          <calendar date_start="date_start" date_stop="date_end" color="state"  >
+          <calendar date_start="date_start" date_stop="date_end" color="state" form_view_id="rs_library.loan_form" quick_add="False" >
             <field name="loan_count" />
             <field name="student_id" />
             <field name="date_end" />

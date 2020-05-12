@@ -1,0 +1,14 @@
+<odoo>
+  <data>
+
+    <!-- actions opening views on models -->
+
+    <record model="ir.actions.act_window" id="rs_library.penalty_fee_action_window">
+      <field name="name">Penalty Book Loan Fees</field>
+      <field name="res_model">penalty.fee</field>
+      <field name="view_mode">tree,form</field>
+    </record>
+
+
+  </data>
+</odoo>

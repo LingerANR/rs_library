@@ -23,5 +23,8 @@
     <menuitem name="Loan Lines" id="rs_library.menu2_loans" parent="rs_library.menu_loans"
               action="rs_library.loan_line_action_window"/>
 
+    <menuitem name="Penalty Fees" id="rs_library.menu3_penalty" parent="rs_library.menu_loans"
+              action="rs_library.penalty_fee_action_window"/>
+
   </data>
 </odoo>
