@@ -8,5 +8,5 @@ class PenaltyFee(models.Model):
 
     loan_line_id = fields.Many2one('book.loan.line', string='Loan Reference', required=True, ondelete='cascade', index=True, copy=False)
     paid = fields.Boolean(default=False)
-#    student_id=fields.Char(string="Student", related='loan_line_id.student_id.name',readonly=True,help="Student Name")
     create_date = fields.Datetime(string='Creation Date', readonly=True, index=True, help="Date on which penalty feed is created.")
+    student_id = fields.Many2one('res.partner', string="Student:",track_visibility='onchange')
