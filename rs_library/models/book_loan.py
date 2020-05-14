@@ -26,6 +26,7 @@ class BookLoan(models.Model):
     days = fields.Integer(string="Days")
     loan_count = fields.Char(string="Numero de prestmo",track_visibility='onchange')
 
+    student_value = fields.Boolean(string="Is Student", related='student_id.student_value',readonly=True,help="Partner is student?")
 
     @api.model
     def create(self, vals):
@@ -37,9 +38,33 @@ class BookLoan(models.Model):
     def action_approve(self):
         self.state="approve"
         for loan in self.loan_line:
-            loan.state="approve"
+            loan.action_approve()
 
         return True
+
+    def check_loans_status(self):
+        approve=False
+        over=False
+        done=False
+        if self.status='approve':
+            done_count= 0
+            sum_done=len(self.loan_line)
+            for loan in self.loan_line:
+                if loan.state='over':
+                   over=True
+                if loan.state='approve':
+                   approve=True
+                if loan.state='done':
+                    done_count=done_count+1
+            if over:
+                self.status='over'
+            else:
+                if approve:
+                    self.status='approve'
+                else:
+                    self.status='done'
+            if done_count=sum_done:
+                self.status='done'
 
     @api.multi
     def update_loan_status(self):
@@ -47,7 +72,6 @@ class BookLoan(models.Model):
         for loan in loans:
             if loan.date_end:
                 if loan.state=='approve' and fields.Date.today()>loan.date_end:
-                    loan.state='over'
                     loan.loan_line.update_loan_status()
 
 
@@ -78,6 +102,35 @@ class BookLoanLines(models.Model):
         ], string='Status', readonly=True, copy=False, index=True, track_visibility='onchange', track_sequence=3, default='draft')
     student_id=fields.Char(string="Student", related='book_loan_id.student_id.name',readonly=True,help="Student Name")
 
+
+
+    def _check_approve(self):
+        if self.book_id.quantity>0:
+            return True
+        else:
+            return False
+
+    def action_approve(self):
+        if self._check_approve():
+            self.state='approve'
+            actual_qty=self.book_id.quantity
+            self.self.book_id.quantity=actual_qty-1
+        else:
+            self.state='denied'
+
+    def action_done(self):
+        actual_qty=self.book_id.quantity
+        self.self.book_id.quantity=actual_qty+1
+        self.state="done"
+        self.book_loan_id.check_loans_status()
+
+    def action_cancel(self):
+        actual_state=self.state
+        actual_qty=self.book_id.quantity
+        if actual_state =='approve' or actual_state =='over':
+            self.self.book_id.quantity=actual_qty+1
+            self.state="cancel"
+        self.book_loan_id.check_loans_status()
 
     @api.multi
     def update_loan_status(self):

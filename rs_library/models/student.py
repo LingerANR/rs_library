@@ -5,7 +5,7 @@ from odoo import models, fields, api
 class RSGroups(models.Model):
     _name="rs.group"
     _description="School Groups"
-
+    #_inherit = 'res.partner'
     name = fields.Char("Group")
 
 
@@ -19,9 +19,9 @@ class Student(models.Model):
     @api.model
     def create(self, vals):
         rec = super(Student,self).create(vals)
-        #import pdb; pdb.set_trace()
+        import pdb; pdb.set_trace()
         if rec.student_value == True:
-            rec.write({'ref' : self.get_matricula() })
+            rec.write({'ref' : rec.get_matricula() })
         return rec
 
 
@@ -46,15 +46,14 @@ class Student(models.Model):
         m=matricula[:4]+self.name[0]+matricula[4:]
         return m
 
-    @api.model
+    @api.multi
     def write(self, vals):
-        #import pdb; pdb.set_trace()
+        rec = super(Student,self).write(vals)
         if vals.get('student_value',False):
             if vals['student_value']== True:
                 if not self.ref:
                     vals['ref']=self.get_matricula()
         rec = super(Student,self).write(vals)
-
         return rec
 
     #esto no se debe hacer: bucle infinito

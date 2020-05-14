@@ -122,6 +122,19 @@
         </field>
         </record>
 
+        <record id="view_filter_book_loan_view" model="ir.ui.view">
+         <field name="name">Book loan search </field>
+         <field name="model">book.loan</field>
+         <field name="arch" type="xml">
+            <search string="Buscar Book Loan">
+               <filter string="Student" domain="[('student_value','=',True)]" name="student_value"/>
+               <filter string="En deuda" domain="[('state','=','over')]" name="state_over"/>
+               <field name="student_id" string="Student" domain="['|',('student_id.ref','ilike',self),('student_id.name','ilike',self)]" />
+               <field name="student_id" string="Matricula" domain="[('student_id.ref','ilike',self)]" />
+           </search>
+        </field>
+        </record>
+
 
     <!-- <field name="arch" type="xml"> -->
 

@@ -14,6 +14,7 @@
               <field name="title"/>
               <field name="isbn"/>
               <field name="author"/>
+              <field name="quantity"/>
             </group>
           </sheet>
         </form>
@@ -28,6 +29,7 @@
           <field name="photo" widget="image" height="100" width="100" />
           <field name="title"/>
           <field name="isbn"/>
+          <field name="quantity"/>
           <field name="author"/>
         </tree>
       </field>
@@ -37,7 +39,7 @@
         <field name="name">book.kanban</field>
         <field name="model">book</field>
         <field name="arch" type="xml">
-          <kanban>
+          <kanban >
             <field name="id"/>
             <field name="title"/>
             <field name="quantity"/>
@@ -55,13 +57,13 @@
                         <field name="title"/>
                         </strong>
                         <div t-if="record.isbn.value">
-                            <t t-esc="record.isbn.value"/>
+                          ISBN:  <t t-esc="record.isbn.value"/>
                         </div>
                         <div t-if="record.author.value">
-                            <t t-esc="record.author.value"/>
+                        Autor:    <t t-esc="record.author.value"/>
                       </div>
-                      <div>
-                          <field name="quantity"/>
+                      <div t-if="record.quantity.value>0.0" >
+                        Cantidad:  <field name="quantity"/>
                       </div>
 
 
