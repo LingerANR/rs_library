@@ -3,6 +3,29 @@
 
     <!-- actions opening views on models -->
 
+
+
+    <record model="ir.ui.view" id="rs_library.penalty_form">
+      <field name="name">Penalties</field>
+      <field name="model">penalty.fee</field>
+      <field name="arch" type="xml">
+        <form string="Book Penalty" >
+          <header>
+             <button name="action_paid" type="object" string="Is Paid" attrs="{'invisible':[('paid','==',True)]}" />
+          </header>
+          <sheet>
+            <group>
+            <field name="student_id"/>
+            <field name="loan_line_id"/>
+            <field name="create_date"/>
+            <field name="paid"  />
+           </group>
+          </sheet>
+        </form>
+      </field>
+      </record>
+
+
     <record model="ir.ui.view" id="rs_library.penalty_tree">
       <field name="name">Penalties</field>
       <field name="model">penalty.fee</field>
@@ -53,10 +76,27 @@
             </field>
           </record>
 
+          <record model="ir.ui.view" id="penalty_fee_pivot">
+            <field name="name">Penalty Book loan pivot</field>
+            <field name="model">penalty.fee</field>
+            <field name="arch" type="xml">
+              <pivot string="Penalties" >
+                <field name="id"/>
+                <field name="student_id" />
+                <field name="loan_line_id"/>
+                <field name="create_date" type="col" />
+                <field name="paid" type="measure" />
+
+              </pivot>
+            </field>
+          </record>
+
+
+
     <record model="ir.actions.act_window" id="rs_library.penalty_fee_action_window">
       <field name="name">Penalty Book Loan Fees</field>
       <field name="res_model">penalty.fee</field>
-      <field name="view_mode">tree,form,kanban</field>
+      <field name="view_mode">tree,form,kanban,pivot</field>
     </record>
 
 

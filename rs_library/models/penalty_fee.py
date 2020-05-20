@@ -14,4 +14,6 @@ class PenaltyFee(models.Model):
     student_id=fields.Char(string="Student", related='loan_line_id.student_id',readonly=True,help="Student Name")
 
 
-    
+    def action_paid(self):
+        self.paid=True
+        self.loan_line_id.action_recovered()

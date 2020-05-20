@@ -46,25 +46,25 @@ class BookLoan(models.Model):
         approve=False
         over=False
         done=False
-        if self.status='approve':
+        if self.state=='approve' or self.state=='over':
             done_count= 0
             sum_done=len(self.loan_line)
             for loan in self.loan_line:
-                if loan.state='over':
+                if loan.state=='over':
                    over=True
-                if loan.state='approve':
+                if loan.state=='approve':
                    approve=True
-                if loan.state='done':
+                if loan.state=='done':
                     done_count=done_count+1
             if over:
-                self.status='over'
+                self.state='over'
             else:
                 if approve:
-                    self.status='approve'
+                    self.state='approve'
                 else:
-                    self.status='done'
-            if done_count=sum_done:
-                self.status='done'
+                    self.state='done'
+            if done_count==sum_done:
+                self.state='done'
 
     @api.multi
     def update_loan_status(self):
@@ -114,13 +114,13 @@ class BookLoanLines(models.Model):
         if self._check_approve():
             self.state='approve'
             actual_qty=self.book_id.quantity
-            self.self.book_id.quantity=actual_qty-1
+            self.book_id.quantity=actual_qty-1
         else:
             self.state='denied'
 
     def action_done(self):
         actual_qty=self.book_id.quantity
-        self.self.book_id.quantity=actual_qty+1
+        self.book_id.quantity=actual_qty+1
         self.state="done"
         self.book_loan_id.check_loans_status()
 
@@ -128,7 +128,7 @@ class BookLoanLines(models.Model):
         actual_state=self.state
         actual_qty=self.book_id.quantity
         if actual_state =='approve' or actual_state =='over':
-            self.self.book_id.quantity=actual_qty+1
+            self.book_id.quantity=actual_qty+1
             self.state="cancel"
         self.book_loan_id.check_loans_status()
 
@@ -148,3 +148,7 @@ class BookLoanLines(models.Model):
     def onchange_book_id(self):
         self.date_start=self.book_loan_id.date_start
         self.date_end=self.book_loan_id.date_end
+
+
+    def action_recovered(self):
+        self.action_done()

@@ -93,6 +93,29 @@
         </field>
       </record> -->
 
+
+      <record model="ir.ui.view" id="rs_library.book_loan_line_form">
+        <field name="name">Loan Line</field>
+        <field name="model">book.loan.line</field>
+        <field name="arch" type="xml">
+          <form string="Book Loan Lines" >
+            <header>
+               <field name="state" widget="statusbar"/>
+            </header>
+            <sheet>
+              <group>
+              <field name="book_loan_id"/>
+              <field name="student_id"/>
+              <field name="book_id"/>
+              <field name="date_start"/>
+              <field name="date_end"/>
+            </group>
+            </sheet>
+          </form>
+        </field>
+        </record>
+
+
       <record model="ir.ui.view" id="rs_library.loan_calendar">
         <field name="name">Loans</field>
         <field name="model">book.loan</field>
@@ -136,6 +159,63 @@
         </record>
 
 
+<!--
+        <div class="o_kanban_image">
+            <img alt="Avatar" t-att-src="kanban_image('book', 'book_id.photo_small',record.id.raw_value)" class="oe_resource_picture" style="max-height: 90px; max-width: 60px;" />
+        </div>
+-->
+        <record model="ir.ui.view" id="book_loan_line_kanban_view">
+            <field name="name">book.loan.line.kanban</field>
+            <field name="model">book.loan.line</field>
+            <field name="arch" type="xml">
+              <kanban default_order="date_end"
+                quick_create="false"
+                group_create="false"
+                default_group_by="state"
+                group_edit="false" >
+
+                <field name="id"/>
+                <field name="book_loan_id"/>
+                <field name="book_id"/>
+                <field name="student_id"/>
+                <field name="date_start"/>
+                <field name="date_end"/>
+                <templates>
+                  <t t-name="kanban-box">
+                    <div t-attf-class="oe_kanban_global_click">
+                        <div class="oe_kanban_details">
+                            <strong class="o_kanban_record_title">
+                            <field name="book_loan_id"/>
+                            <field name="student_id"/>
+                            <field name="date_start"/>
+                            <field name="date_end"/>
+                            </strong>
+                        </div>
+                    </div>
+                </t>
+              </templates>
+              </kanban>
+              </field>
+            </record>
+
+            <record model="ir.ui.view" id="loan_lines_pivot">
+              <field name="name">Book loan lines PIvot</field>
+              <field name="model">book.loan.line</field>
+              <field name="arch" type="xml">
+                <pivot string="Book loans" >
+                  <field name="id"/>
+                  <field name="book_loan_id"/>
+                  <field name="book_id"  />
+                  <field name="student_id"  />
+                  <field name="date_start" interval="week" type="col" />
+                  <field name="date_end" interval="month" type="col" />
+                  <field name="state" type="measure" />
+
+                </pivot>
+              </field>
+            </record>
+
+
     <!-- <field name="arch" type="xml"> -->
 
 
@@ -149,7 +229,7 @@
     <record model="ir.actions.act_window" id="rs_library.loan_line_action_window">
       <field name="name">Loan lines</field>
       <field name="res_model">book.loan.line</field>
-      <field name="view_mode">tree,form</field>
+      <field name="view_mode">tree,form,kanban,pivot</field>
 
     </record>
 
