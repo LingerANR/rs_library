@@ -27,7 +27,7 @@
                     <field name="date_start" attrs="{'readonly':[('state','!=','draft')]}" />
                     <field name="date_end" attrs="{'readonly':['|',('state','=','cancel'),('state','=','done')]}"/>
                     <field name="renews"/>
-                    <field name="days"/>
+                    <field name="days" readonly="False"/>
 
                 </group>
                   <notebook>

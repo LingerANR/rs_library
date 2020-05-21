@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-
+from datetime import timedelta
 from odoo import models, fields, api
 
 class BookLoan(models.Model):
@@ -7,6 +7,8 @@ class BookLoan(models.Model):
     _description = "Loan Books"
     _rec_name="loan_count"
     _inherit = ['portal.mixin','mail.thread', 'mail.activity.mixin']
+
+
 
     student_id = fields.Many2one('res.partner', string="Student:",track_visibility='onchange')
     loan_line = fields.One2many('book.loan.line', 'book_loan_id', string='Loan Lines', states={'cancel': [('readonly', True)], 'done': [('readonly', True)]}, copy=True, auto_join=True)
@@ -22,11 +24,32 @@ class BookLoan(models.Model):
     date_record = fields.Datetime(string='Order Date', required=True, readonly=True, index=True, states={'draft': [('readonly', False)]}, copy=False, default=fields.Datetime.now)
     renews = fields.Integer(string="Renews",default=0, help="Number of actual renews")
     date_start = fields.Date(string="Loan Start Date", default=fields.Date.today)
-    date_end = fields.Date(string="Loan End Date",track_visibility='onchange')
-    days = fields.Integer(string="Days")
+    date_end = fields.Date(string="Loan End Date",track_visibility='onchange', compute='_compute_date_end', store=True, inverse='_inverse_date_end', required=True)
+    days = fields.Integer(string="Days",compute='_compute_days',store=True, required=True)
     loan_count = fields.Char(string="Numero de prestmo",track_visibility='onchange')
 
     student_value = fields.Boolean(string="Is Student", related='student_id.student_value',readonly=True,help="Partner is student?")
+
+    @api.depends('days')
+    def _inverse_date_end(self):
+        for order in self:
+            if order.days:
+                order.date_end=order.date_start+timedelta(days=order.days)
+
+    def _compute_days(self):
+        for order in self:
+            if order.date_start and order.date_end:
+                order.days=(order.date_end-order.date_start).days
+            else:
+                order.days=5
+
+    def _compute_date_end(self):
+        for order in self:
+            if order.date_start and order.days:
+                order.date_end=order.date_start+timedelta(days=order.days)
+            else:
+                if order.date_start:
+                    order.date_end=order.date_start+timedelta(days=5)
 
     @api.model
     def create(self, vals):
