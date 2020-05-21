@@ -23,7 +23,8 @@
 
     # always loaded
     'data': [
-#        'reports/rs_library_report.xml'
+        'reports/rs_library_report.xml',
+        'reports/rs_library_report_template.xml',
         'security/rs_library_security.xml',
         'security/ir.model.access.csv',
         'views/book_loan_views.xml',

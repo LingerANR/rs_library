@@ -1,0 +1,9 @@
+<?xml version="1.0"?>
+<odoo>
+      <report id="action_todo_task_report"
+      string="student Loans Report"
+      model="res.partner"
+      report_type="qweb-pdf"
+      name="rs_library.report_student_loans_history_template"
+      />
+</odoo>
