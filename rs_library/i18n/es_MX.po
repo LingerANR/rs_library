@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: Odoo Server 12.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2020-05-20 16:13+0000\n"
-"PO-Revision-Date: 2020-05-20 11:16-0500\n"
+"PO-Revision-Date: 2020-05-21 08:18-0500\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -65,7 +65,7 @@ msgstr "Autor"
 #. module: rs_library
 #: model_terms:ir.ui.view,arch_db:rs_library.book_kanban_view
 msgid "Autor:"
-msgstr ""
+msgstr "Autor:"
 
 #. module: rs_library
 #: model_terms:ir.ui.view,arch_db:rs_library.book_kanban_view
@@ -132,7 +132,7 @@ msgstr "Cancelado"
 #. module: rs_library
 #: model_terms:ir.ui.view,arch_db:rs_library.book_kanban_view
 msgid "Cantidad:"
-msgstr ""
+msgstr "Cantidad:"
 
 #. module: rs_library
 #: model:ir.ui.menu,name:rs_library.menu_config
@@ -174,12 +174,12 @@ msgstr "URL del portal de cliente"
 #. module: rs_library
 #: model:ir.model.fields,field_description:rs_library.field_book_loan_line__date_end
 msgid "Date End"
-msgstr ""
+msgstr "Fecha de fin"
 
 #. module: rs_library
 #: model:ir.model.fields,field_description:rs_library.field_book_loan_line__date_start
 msgid "Date Start"
-msgstr ""
+msgstr "Fecha de inicio"
 
 #. module: rs_library
 #: model:ir.model.fields,help:rs_library.field_penalty_fee__create_date
@@ -218,7 +218,7 @@ msgstr "Borrador"
 #. module: rs_library
 #: model_terms:ir.ui.view,arch_db:rs_library.view_filter_book_loan_view
 msgid "En deuda"
-msgstr ""
+msgstr "En deuda"
 
 #. module: rs_library
 #: model:ir.model.fields,field_description:rs_library.field_book__quantity
@@ -259,17 +259,17 @@ msgstr "Grupo Matricula"
 #: model:ir.model.fields,field_description:rs_library.field_penalty_fee__id
 #: model:ir.model.fields,field_description:rs_library.field_rs_group__id
 msgid "ID"
-msgstr ""
+msgstr "ID"
 
 #. module: rs_library
 #: model:ir.model.fields,field_description:rs_library.field_book__isbn
 msgid "ISBN"
-msgstr ""
+msgstr "ISBN"
 
 #. module: rs_library
 #: model_terms:ir.ui.view,arch_db:rs_library.book_kanban_view
 msgid "ISBN:"
-msgstr ""
+msgstr "ISBN:"
 
 #. module: rs_library
 #: model:ir.model.fields,help:rs_library.field_book_loan__message_unread
@@ -306,7 +306,7 @@ msgstr "Esta pagado"
 #: model:ir.model.fields,field_description:rs_library.field_res_partner__student_value
 #: model:ir.model.fields,field_description:rs_library.field_res_users__student_value
 msgid "Is Student"
-msgstr ""
+msgstr "Es un Estudiante?"
 
 #. module: rs_library
 #: model:ir.model.fields,field_description:rs_library.field_book____last_update
@@ -349,41 +349,41 @@ msgstr "Detalle de Prestamos"
 #. module: rs_library
 #: model:ir.model.fields,field_description:rs_library.field_book_loan__date_end
 msgid "Loan End Date"
-msgstr ""
+msgstr "Fecha final del prestamo"
 
 #. module: rs_library
 #: model:ir.model.fields,field_description:rs_library.field_book_loan__loan_line
 #: model:ir.ui.menu,name:rs_library.menu2_loans
 msgid "Loan Lines"
-msgstr ""
+msgstr "Pedidos"
 
 #. module: rs_library
 #: model:ir.model.fields,field_description:rs_library.field_book_loan_line__book_loan_id
 #: model:ir.model.fields,field_description:rs_library.field_penalty_fee__loan_line_id
 msgid "Loan Reference"
-msgstr ""
+msgstr "Referencia de prestamo"
 
 #. module: rs_library
 #: model:ir.model.fields,field_description:rs_library.field_book_loan__date_start
 msgid "Loan Start Date"
-msgstr ""
+msgstr "Fecha de inicio del prestamo"
 
 #. module: rs_library
 #: model:ir.actions.act_window,name:rs_library.loan_line_action_window
 msgid "Loan lines"
-msgstr ""
+msgstr "Pedidos"
 
 #. module: rs_library
 #: model_terms:ir.ui.view,arch_db:rs_library.penalty_kanban_view
 msgid "Loan:"
-msgstr ""
+msgstr "Préstamo:"
 
 #. module: rs_library
 #: model:ir.actions.act_window,name:rs_library.loans_action_window
 #: model:ir.ui.menu,name:rs_library.menu1_loans
 #: model:ir.ui.menu,name:rs_library.menu_loans
 msgid "Loans"
-msgstr ""
+msgstr "Prestamos"
 
 #. module: rs_library
 #: model:ir.model.fields,field_description:rs_library.field_book_loan__message_main_attachment_id
@@ -394,7 +394,7 @@ msgstr "Adjuntos principales"
 #: model_terms:ir.ui.view,arch_db:rs_library.res_partner_form
 #: model_terms:ir.ui.view,arch_db:rs_library.view_filter_book_loan_view
 msgid "Matricula"
-msgstr ""
+msgstr "Matricula"
 
 #. module: rs_library
 #: model:ir.model.fields,field_description:rs_library.field_book__photo_medium
@@ -439,7 +439,7 @@ msgstr "Número de acciones"
 #. module: rs_library
 #: model:ir.model.fields,help:rs_library.field_book_loan__renews
 msgid "Number of actual renews"
-msgstr ""
+msgstr "Numero de renovaciones actuales"
 
 #. module: rs_library
 #: model:ir.model.fields,field_description:rs_library.field_book_loan__message_has_error_counter
@@ -509,12 +509,12 @@ msgstr "Multas de Prestamos"
 #. module: rs_library
 #: model:ir.ui.menu,name:rs_library.menu3_penalty
 msgid "Penalty Fees"
-msgstr ""
+msgstr "Multas"
 
 #. module: rs_library
 #: model:ir.model,name:rs_library.model_penalty_fee
 msgid "Penalty loans"
-msgstr ""
+msgstr "Prestamos con multa"
 
 #. module: rs_library
 #: selection:book.loan,activity_state:0

@@ -16,6 +16,23 @@ class Student(models.Model):
     # mat = fields.Char(string='Matricula de estudiante', index=True)
     rs_group_id = fields.Many2one('rs.group', string="Group")
 
+    penalty_count = fields.Integer(compute='_compute_penalty_count', string='Penalty Count')
+
+
+    def _compute_penalty_count(self):
+            # retrieve all children partners and prefetch 'parent_id' on them
+
+            student_id=self.id
+            penalty_count=0
+            book_loans= self.env['book.loan'].search([('student_id', 'in', [student_id])])
+            for book_loan in book_loans:
+                for line in book_loan.loan_line:
+                    penalties = self.env['penalty.fee'].search(
+                            [('loan_line_id', 'in', [line.id])]
+                            )
+                    penalty_count += len(penalties)
+            self.penalty_count = penalty_count
+
     @api.model
     def create(self, vals):
         rec = super(Student,self).create(vals)

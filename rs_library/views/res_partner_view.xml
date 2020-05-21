@@ -18,6 +18,16 @@ replace
         </field>
         <xpath expr="//field[@name='ref']" position="replace" >
         </xpath>
+
+        <button name="toggle_active" position="before">
+                  <button class="oe_stat_button" type="action" name="%(rs_library.penalty_fee_action_window)d"
+                      groups="rs_library.group_administrator_book_loans"
+                      attrs="{'invisible': [('student_value', '=', False)]}"
+                      context="{'search_default_student_id': name}"
+                      icon="fa-usd">
+                      <field string="Penalties" name="penalty_count" widget="statinfo"/>
+                  </button>
+              </button>
         <field name="vat" position="after">
             <field name="ref" string="Matricula" domain="[('student_value','=',True)]"/>
             <field name="rs_group_id" string="GroupMatricula"/>
