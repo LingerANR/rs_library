@@ -7,7 +7,19 @@ class BookLoan(models.Model):
     _description = "Loan Books"
     _rec_name="loan_count"
     _inherit = ['portal.mixin','mail.thread', 'mail.activity.mixin']
+    _order = "date_end DESC"
 
+    @api.model
+    def _get_default_date_end(self):
+        import wdb;wdb.set_trace()
+        days=self.env['ir.config_parameter'].get_param('lioncarter')
+        return fields.Date.today()+timedelta(days=int(days))
+
+
+    @api.model
+    def _default_days_parameter(self):
+        #import wdb; wdb.set_trace()
+        return self.env['ir.config_parameter'].get_param('lioncarter')
 
 
     student_id = fields.Many2one('res.partner', string="Student:",track_visibility='onchange')
@@ -24,17 +36,19 @@ class BookLoan(models.Model):
     date_record = fields.Datetime(string='Order Date', required=True, readonly=True, index=True, states={'draft': [('readonly', False)]}, copy=False, default=fields.Datetime.now)
     renews = fields.Integer(string="Renews",default=0, help="Number of actual renews")
     date_start = fields.Date(string="Loan Start Date", default=fields.Date.today)
-    date_end = fields.Date(string="Loan End Date",track_visibility='onchange', compute='_compute_date_end', store=True, inverse='_inverse_date_end', required=True)
-    days = fields.Integer(string="Days",compute='_compute_days',store=True, required=True)
+    date_end = fields.Date(string="Loan End Date",track_visibility='onchange',  store=True, required=True,default=_get_default_date_end)
+    days = fields.Integer(string="Days",store=True, required=True, default=_default_days_parameter)
     loan_count = fields.Char(string="Numero de prestmo",track_visibility='onchange')
 
     student_value = fields.Boolean(string="Is Student", related='student_id.student_value',readonly=True,help="Partner is student?")
 
-    @api.depends('days')
-    def _inverse_date_end(self):
-        for order in self:
-            if order.days:
-                order.date_end=order.date_start+timedelta(days=order.days)
+
+
+    # @api.depends('days')
+    # def _inverse_date_end(self):
+    #     for order in self:
+    #         if order.days:
+    #             order.date_end=order.date_start+timedelta(days=order.days)
 
     def _compute_days(self):
         for order in self:
